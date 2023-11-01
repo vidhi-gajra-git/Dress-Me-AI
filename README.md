@@ -1,2 +1,2 @@
 # Dress-Me-AI
-Ai website with chatbot image classification and smart search
+AI shopping website with |**chatbot** | **image classification**| ** smart search** |** notification system**
