@@ -1,0 +1,250 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Upload Image File
+{% endblock title %}
+
+{% block style %}
+.thumbnail {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  display: none;
+  text-align: center;
+}
+
+.thumbnail:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.thumbnail img {
+  width: 100%;
+  height: auto;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 -5px;
+}
+
+.col-md-4 {
+  flex: 0 0 31%;
+  margin: 0 5px;
+}
+
+#loadingIndicator {
+    display: none;
+    /* Add your loading indicator styles here */
+    /* For example, you can use a CSS animation */
+    
+    {% comment %} animation: loadingAnimation 1s infinite linear;
+    border: 16px solid #f3f3f3; /* Light gray border */
+    border-top: 16px solid #000; /* Black border on top */
+    border-radius: 50%; /* Circular shape */
+    width: 120px;
+    height: 120px;
+    margin: 0 auto; {% endcomment %}
+    
+            /* Add your loading indicator styles here */
+            width: 100%;
+            height: 120px;
+            margin: 0 auto;
+            text-align: center;
+            
+           
+}
+
+{% comment %} @keyframes loadingAnimation {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+} {% endcomment %}
+.dot {
+    display: inline-block;
+   
+    background-color: #000; /* Black dots */
+    width: 10px;
+    height: 10px;
+    border-radius: 50%; /* Circular shape */
+    margin: 0 5px;
+    opacity: 0.6; /* Initial opacity */
+    animation: dotAnimation 1s infinite;
+}
+
+@keyframes dotAnimation {
+    0% { opacity: 0.3; }
+    50% { opacity: 0.8; }
+    100% { opacity: 0.3; }
+}
+
+{% endblock style %}
+
+{% block body %}
+<div class="container">
+  <div style="padding:10px"><h1>Upload Image File</h1></div>
+  <form id="upload-form" method="post" enctype="multipart/form-data" action="{% url 'index' %}">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="image">Choose an Image:</label>
+      <input type="text" name="url" id="url" class="form-control-file" placeholder="Enter URL here">
+      Or upload here
+      <input type="file" name="image" class="form-control-file" accept="image/*">
+    </div>
+    <div style="padding:10px 10px">
+      <button type="button" class="btn btn-primary" id="upload">Upload</button>
+    </div>
+    <hr>
+    
+  </form>
+  {% comment %} <div id="loadingIndicator"></div> {% endcomment %}
+  <div id="loadingIndicator">
+   
+    <h3>Rummaging through the store to find you dress 🏃
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span></h3>
+        
+   
+  </div>
+
+  <h3 id="lst"></h3>
+  <div id="size"></div>
+  <div class="row">
+    <div class="col-md-4" >
+      <div class="thumbnail" >
+        
+        <div class="card" >
+          <div id="image-container" class="card-img-top"></div>
+          <div class="card-body">
+            <h5 class="card-title">Image Input </h5>
+            <p class="card-text"></p></div>
+          </div>
+        </div>
+      </div>
+    
+    
+        <div class="col-md-4" style="align:center ">
+      <div class="thumbnail">
+        <div class="card" style="width: 100%">
+          <div id="img1" class="card-img-top"></div>
+          <div class="card-body">
+            <h5 class="card-title"></h5>
+            <p class="card-text" id="Brand1"></p>
+            <p class="card-text" id="color1"></p>
+            <p class="card-text" id="price1"></p>
+            <p class="card-text" id="p_id1"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="thumbnail">
+        <div class="card" style="width: 100%">
+          <div id="img2" class="card-img-top"></div>
+          <div class="card-body">
+            <h5 class="card-title"></h5>
+            <p class="card-text" id="Brand2"></p>
+            <p class="card-text" id="color2"></p>
+            <p class="card-text" id="price2"></p>
+            <p class="card-text" id="p_id2"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+        <div class="thumbnail">
+          <div class="card" style="width: 100%;">
+            <div id="img3" class="card-img-top"></div>
+            <div class="card-body">
+              <h5 class="card-title"></h5>
+              <p class="card-text" id="Brand3"></p>
+              <p class="card-text"id="color3"> </p>
+              <p class="card-text"id="price3"> </p>
+              <p class="card-text"id="p_id3"> </p>
+
+            </div></div></div></div>
+      <div class="col-md-4">
+        <div class="thumbnail">
+          <div class="card" style="width: 100%;">
+            <div id="img4" class="card-img-top"></div>
+            <div class="card-body">
+              <h5 class="card-title"></h5>
+              <p class="card-text" id="Brand4"> </p>
+              <p class="card-text"id="color4"> </p>
+              <p class="card-text"id="price4"></p>
+              <p class="card-text"id="p_id4"></p>
+
+            </div></div></div></div>
+      <div class="col-md-4">
+        <div class="thumbnail">
+          <div class="card" style="width: 100%;">
+            <div id="img5" class="card-img-top"></div>
+            <div class="card-body">
+              <h5 class="card-title"></h5>
+              <p class="card-text" id="Brand5"></p>
+              <p class="card-text"id="color5"></p>
+              <p class="card-text"id="price5"></p>
+              <p class="card-text"id="p_id5"></p>
+
+            </div></div></div></div>
+      <div class="col-md-4">
+        <div class="thumbnail">
+          <div class="card" style="width: 100%;">
+            <div id="img6" class="card-img-top"></div>
+            <div class="card-body">
+              <h5 class="card-title"></h5>
+              <p class="card-text" id="Brand6"> </p>
+              <p class="card-text"id="color6"> </p>
+              <p class="card-text"id="price6"> </p>
+              <p class="card-text"id="p_id6"></p>
+
+            </div></div></div></div>
+    </div>
+    
+
+  
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#upload').click(function(event) {
+        event.preventDefault();
+        $('#loadingIndicator').show();
+        var formData = new FormData($("#upload-form")[0]);
+        $.ajax({
+          url: '/index',
+          type: 'POST',
+          data: formData,
+          processData: false,
+          contentType: false,
+          success: function(response) {
+            $('#loadingIndicator').hide(); 
+            var objects = response.results;
+            var imageUrl = response.image_url;
+            var pid_lst = response.pid_lst;
+            $('#image-container').html('<img src="' + imageUrl + '" width=300 height=300> ');
+            $('.thumbnail').show();
+            if (objects && objects.length > 0) {
+              for (let i = 0; i < objects.length; i++) {
+                $('#img' + (i + 1)).html('<img src=' + objects[i][0].img + '> ');
+                $('#Brand' + (i + 1)).html('<p class="class-text"><strong> Brand: </strong>' + objects[i][0].brand + '</p>');
+                $('#color' + (i + 1)).html('<p class="class-text"><strong> Color: </strong>' + objects[i][0].color + '</p>');
+                $('#price' + (i + 1)).html('<p class="class-text"><strong> Price: </strong>' + objects[i][0].price + '</p>');
+                $('#p_id' + (i + 1)).html('<p class="class-text"><strong> Product ID: </strong>' + objects[i][0].p_id + '</p>');
+              }
+            } else {
+              $('#lst').html('No objects found! :(');
+            }
+          },
+          error: function(response) {
+            console.log(response);
+          }
+        });
+      });
+    });
+  </script>
+</div>
+{% endblock body %}

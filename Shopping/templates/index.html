@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Upload Image File
+{% endblock title %}
+{% block style %}
+
+  .thumbnail {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  display:none;
+  text-align: center;
+  }
+
+  .thumbnail:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .thumbnail img {
+  width: 100%;
+  height: auto;
+  }
+
+  .row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 -5px;
+  }
+
+  .col-md-4 {
+  flex: 0 0 31%;
+  margin: 0 5px;
+  }
+
+{% endblock style %}
+{% block body %}
+  <div class="container">
+    <h1>Upload Image File</h1>
+    <form id="upload-form" method="post" enctype="multipart/form-data"
+      action="{% url 'index' %}">
+
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="image">Choose an Image:</label>
+        <input type="text" name="url" class="form-control-file">
+
+        <input type="file" name="image" class="form-control-file"
+          accept="image/*">
+      </div>
+      <button type="submit" class="btn btn-primary">Upload</button>
+    </form>
+    <h3 id="lst"> </h3>
+    <div id="size"></div>
+    <div class="row">
+      {% comment %} <div class="col-md-4">
+        <div class="thumbnail">
+          <div class="card" style="width: 18rem;">
+            <div id="image-container" class="card-img-top"></div>
+            <div class="card-body">
+              <h5 class="card-title">Inputted image</h5>
+              <p class="card-text"></p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div></div></div></div> {% endcomment %}
+
+      <div class="col-md-4">
+        <div class="thumbnail">
+          <div class="card" style="width: 18rem;">
+            <div id="img1" class="card-img-top"></div>
+            <div class="card-body">
+              <h5 class="card-title" id="name1"></h5>
+              <p class="card-text" id="desc1"></p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div></div></div> </div>
+      <div class="col-md-4">
+        <div class="thumbnail">
+          <div class="card" style="width: 18rem;">
+            <div id="img2" class="card-img-top"></div>
+            <div class="card-body">
+              <h5 class="card-title" id="name2"></h5>
+              <p class="card-text" id="desc1"></p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div></div></div></div>
+      <div class="col-md-4">
+        <div class="thumbnail">
+          <div class="card" style="width: 18rem;">
+            <div id="img3" class="card-img-top"></div>
+            <div class="card-body">
+              <h5 class="card-title" id="name3"></h5>
+              <p class="card-text" id="desc1"></p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div></div></div></div>
+      <div class="col-md-4">
+        <div class="thumbnail">
+          <div class="card" style="width: 18rem;">
+            <div id="img4" class="card-img-top"></div>
+            <div class="card-body">
+              <h5 class="card-title" id="name4"></h5>
+              <p class="card-text" id="desc1"></p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div></div></div></div>
+      <div class="col-md-4">
+        <div class="thumbnail">
+          <div class="card" style="width: 18rem;">
+            <div id="img5" class="card-img-top"></div>
+            <div class="card-body">
+              <h5 class="card-title" id="name5"></h5>
+              <p class="card-text" id="desc1"></p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div></div></div></div>
+      <div class="col-md-4">
+        <div class="thumbnail">
+          <div class="card" style="width: 18rem;">
+            <div id="img6" class="card-img-top"></div>
+            <div class="card-body">
+              <h5 class="card-title" id="name6"></h5>
+              <p class="card-text" id="desc1"></p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div></div></div></div>
+    </div>
+
+    <!-- Include jQuery and Bootstrap from CDNs -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        $('#upload-form').submit(function(event) {
+          event.preventDefault();
+          var formData = new FormData(this);
+            $.ajax({
+            url: '/index',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+              
+              var objects =response.my_objects;
+              var imageUrl = response.image_url;
+              var pid_lst=response.pid_lst;
+              
+              {% comment %} $('#lst').html(str); {% endcomment %}
+              $('#image-container').html('<img src="' + imageUrl + '" width=300 height=300> '); 
+              $('.thumbnail').show();
+                          
+                 if (objects && objects.length > 0) { 
+                for (let i = 0; i < objects.length; i++) {
+                  $('#img'+(i+1)).html('<img src=' +objects[i][0]['img'] + '> '); 
+                  $('#name'+(i+1)).html(objects[i][0]['name']); 
+                   
+                 
+                }}
+              else {
+                $('#msg').html('No object returned ! :(');
+              } 
+            }  ,
+            error: function(response) {
+              console.log(response);
+            }
+          })}); 
+        });
+     
+    </script>
+
+{% endblock body %}

@@ -1,0 +1,129 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "Hi",
+        "Hey",
+        "How are you",
+        "Is anyone there?",
+        "Hello",
+        "Good day"
+      ],
+      "responses": [
+        "Hey :-)",
+        "Hello, thanks for visiting",
+        "Hi there, what can I do for you?",
+        "Hi there, how can I help?"
+      ]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": [
+        "Bye",
+        "See you later",
+        "Goodbye"
+      ],
+      "responses": [
+        "See you later, thanks for visiting",
+        "Have a nice day",
+        "Bye! Come back again soon."
+      ]
+    },
+    {
+      "tag": "thanks",
+      "patterns": [
+        "Thanks",
+        "Thank you",
+        "That's helpful",
+        "Thank's a lot!"
+      ],
+      "responses": [
+        "Happy to help!",
+        "Any time!",
+        "My pleasure"
+      ]
+    },
+    {
+      "tag": "items",
+      "patterns": [
+        "Which items do you have?",
+        "What kinds of items are there?",
+        "What do you sell?"
+      ],
+      "responses": [
+        "We sell clothes",
+        "We have clothes to sell"
+      ]
+    },
+    {
+      "tag": "payments",
+      "patterns": [
+        "Do you take credit cards?",
+        "Do you accept Mastercard?",
+        "Can I pay with Paypal?",
+        "Are you cash only?"
+      ],
+      "responses": [
+        "We accept VISA, Mastercard and Paypal",
+        "We accept most major credit cards, and Paypal"
+      ]
+    },
+    {
+      "tag": "delivery",
+      "patterns": [
+        "How long does delivery take?",
+        "How long does shipping take?",
+        "When do I get my delivery?",
+        "tell me about  delivery how long it will take ?"
+      ],
+      "responses": [
+        "Delivery takes 2-4 days",
+        "Shipping takes 2-4 days"
+      ]
+    },
+    {
+      "tag": "order",
+      "patterns": [
+        "What is my order status?",
+        "Where is my order?",
+        "What is my tracking number?",
+        "Can you tell me when my order will arrive?"
+      ],
+      "responses": [
+        "Sure, what is your order ID?",
+        "Do you have your order number handy?",
+        "I can help with that. What is your order ID?",
+        "I can check the status of your order if you provide me with the order number."
+      ]
+    },
+    {
+      "tag": "brands",
+      "patterns": [
+        "What all brands do you have?",
+        "Do you have a specific brand?",
+        "Please provide me the brands you sell"
+      ],
+      "responses": [
+        "Here are some of the brands from the available ones haveKhushal K,InWeave, Anubhutee, Nayo,AHIKA, Soch,Libas, Ahalyaa, Anouk,Khushal K,Libas,Varanga, AHIKA,Vishudh, Anouk, SheWill",
+        "AHIKA, Anouk, Charu, Libas, JAIPURI BUNAAI,KALINI,Indo Era,Anouk,TOULIN,Ishin,Libas"
+          
+       
+      ]
+    },
+    {
+      "tag": "payments",
+      "patterns": [
+        "Do you take credit cards?",
+        "Do you accept Mastercard?",
+        "Can I pay with Paypal?",
+        "Are you cash only?"
+      ],
+      "responses": [
+        "We accept VISA, Mastercard and Paypal",
+        "We accept most major credit cards, and Paypal"
+      ]
+    }
+    
+  ]
+}

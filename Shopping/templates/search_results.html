@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+ 
+  {% if search_results %}
+    <ul>
+        {% for result in search_results %}
+        <div class="col-md-4">
+          <div class="card">
+            <img class="card-img-top" src="{{ result.image_url }}" alt="{{ result.name }}">
+           
+            <div class="card-body">
+               
+
+              <h5 class="card-title">{{ result.name }}</h5>
+
+
+             {% comment %} <p class="card-text"><strong>Brand:</strong> {{ result.brand }}</p> 
+             <p class="card-text"><strong>Colour:</strong> {{ result.color }}</p> {% endcomment %}
+              <p class="card-text"><strong>Price:</strong> {{ result.price }}</p>
+              
+              
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No results found.</p>
+  {% endif %}
+{% endblock %}

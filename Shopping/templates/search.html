@@ -1,0 +1,38 @@
+
+{% extends 'base.html' %}
+
+{% block body %} 
+
+ <div class="container my-4 px=0">
+ 
+   
+{% if search_results %}
+  
+  <div class="container ">
+    <div class="row justify-content-center">
+      {% for result in search_results %}
+        <div class="col-md-4">
+          <div class="card">
+            <img class="card-img-top" src="{{ result.image_url }}" alt="{{ result.name }}">
+           
+            <div class="card-body">
+               
+
+              <h5 class="card-title">{{ result.name }}</h5>
+
+
+             <p class="card-text"><strong>Brand:</strong> {{ result.brand }}</p> 
+             <p class="card-text"><strong>Colour:</strong> {{ result.color }}</p>
+              <p class="card-text"><strong>Price:</strong> {{ result.price }}</p>
+              
+              
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}
+       {% endblock body %} 
+
+       

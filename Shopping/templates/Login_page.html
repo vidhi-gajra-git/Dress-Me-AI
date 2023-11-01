@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Login Page
+  {% endblock %}
+  {% block style %}
+ 
+    body {
+      background-color: #f2f2f2;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      width: 400px;
+      margin: 0 auto;
+      margin-top: 150px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      color: #666;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    .form-group input[type="submit"] {
+      background-color: #4CAF50;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .form-group input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    .form-group .message {
+      text-align: center;
+      color: red;
+      margin-top: 10px;
+    }
+ {% endblock %}
+
+{% block body%}
+  <div class="container">
+    <h2>Login</h2>
+    <form method='POST'>
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" placeholder="Enter your username" name="username">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password">
+      </div>
+      <div class="form-group">
+        <input type="submit" value="Login">
+      </div>
+      <div class="form-group message">
+      <p>Don't have an account? <a href="/Register_page/">Register</a></p>
+      </div>
+    </form>
+  </div>
+{% endblock %}
